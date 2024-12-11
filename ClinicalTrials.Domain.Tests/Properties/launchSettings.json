@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ClinicalTrials.Domain.Tests": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

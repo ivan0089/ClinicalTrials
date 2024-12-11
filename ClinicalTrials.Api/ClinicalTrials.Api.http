@@ -1,0 +1,16 @@
+@ClinicalTrials.Api_HostAddress = http://localhost:5139
+
+
+###
+GET {{ClinicalTrials.Api_HostAddress}}/v1/trials/1234
+Accept: application/json
+
+###
+GET {{ClinicalTrials.Api_HostAddress}}/v1/trials?status=Complete
+Accept: application/json
+
+###
+GET {{ClinicalTrials.Api_HostAddress}}/v1/trials?participants=10
+Accept: application/json
+
+

@@ -1,0 +1,40 @@
+
+services:
+  web-api:
+    image: ${DOCKER_REGISTRY-}webapi
+    container_name: web-api
+    build:
+      context: .
+      dockerfile: ClinicalTrials.Api/Dockerfile
+    ports:
+      - 5000:8080
+      - 5001:8081
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_DATABASE=ClinicaslTrial
+      - MSSQL_USER=clinical_user
+      - MSSQL_PASSWORD=Password123!
+      - MSSQL_PID=Express
+    volumes:
+      - ./.containers/sqlserver:/var/opt/mssql
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 1433:1433
+    networks:
+      - default
+
+  seq:
+    image: datalust/seq:latest
+    container_name: seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - 8081:80
+
+networks:
+  default:
+    external: false
